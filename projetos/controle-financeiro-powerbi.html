@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Controle Financeiro Pessoal — Power BI | Fauzer Vieira</title>
+
+  <meta
+    name="description"
+    content="Case de Business Intelligence em Power BI para controle financeiro pessoal, fluxo de pagamentos, qualidade dos dados, patrimônio e projeções financeiras."
+  >
+
+  <style>
+    :root {
+      --navy: #082b57;
+      --navy-dark: #061f40;
+      --green: #16955b;
+      --green-light: #eaf7f2;
+      --amber: #d8a85c;
+      --background: #f7f9fc;
+      --surface: #ffffff;
+      --text: #172033;
+      --text-secondary: #52647b;
+      --border: #dce3ed;
+      --shadow: 0 14px 40px rgba(8, 43, 87, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--navy), #0e4c86);
+      color: white;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(8, 43, 87, 0.16);
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+    }
+
+    .brand small {
+      color: var(--text-secondary);
+    }
+
+    .back-link {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .back-link:hover {
+      color: var(--green);
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      background:
+        radial-gradient(circle at 10% 20%, #eef4fa 0, transparent 30%),
+        radial-gradient(circle at 90% 70%, #eef8f3 0, transparent 28%),
+        white;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 13px;
+      border-radius: 40px;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      color: var(--navy);
+      font-size: clamp(42px, 6vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+    }
+
+    .hero-subtitle {
+      margin-top: 20px;
+      color: var(--text-secondary);
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      max-width: 820px;
+      margin-top: 24px;
+      color: #34445a;
+      font-size: 18px;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .tech {
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      background: white;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 78px 0;
+    }
+
+    .section.white {
+      background: white;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-heading span {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+    }
+
+    .section-heading h2 {
+      margin-top: 6px;
+      color: var(--navy);
+      font-size: 34px;
+    }
+
+    .section-heading p {
+      max-width: 780px;
+      margin-top: 10px;
+      color: var(--text-secondary);
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      padding: 28px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 5px 18px rgba(8, 43, 87, 0.035);
+    }
+
+    .card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+    }
+
+    .architecture {
+      display: grid;
+      gap: 14px;
+      max-width: 800px;
+    }
+
+    .architecture-step {
+      position: relative;
+      padding: 18px 22px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--navy);
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(8, 43, 87, 0.025);
+    }
+
+    .architecture-step:not(:last-child)::after {
+      content: "↓";
+      position: absolute;
+      left: 50%;
+      bottom: -23px;
+      transform: translateX(-50%);
+      color: var(--green);
+      font-size: 18px;
+      z-index: 2;
+    }
+
+    .architecture-step + .architecture-step {
+      margin-top: 10px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 22px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    .feature strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .gallery-item {
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      text-align: center;
+      background:
+        linear-gradient(135deg, #f4f8fc, #eef8f3);
+      border: 1px dashed #b9c8d9;
+      border-radius: 18px;
+      color: var(--text-secondary);
+    }
+
+    .gallery-item strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .insight-box {
+      padding: 30px;
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .insight-box h3 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .insight-box p {
+      color: #d6e2f0;
+    }
+
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      color: #aebfd2;
+      background: var(--navy-dark);
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .two-columns,
+      .features-grid,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a href="../index.html" class="brand">
+      <div class="brand-mark">FV</div>
+
+      <div>
+        <strong>Fauzer Vieira</strong>
+        <small>Business Intelligence & Finanças</small>
+      </div>
+    </a>
+
+    <a href="../index.html#projetos" class="back-link">
+      ← Voltar aos projetos
+    </a>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        Projeto concluído • Business Intelligence
+      </div>
+
+      <h1>
+        Controle Financeiro Pessoal — Power BI
+      </h1>
+
+      <div class="hero-subtitle">
+        Business Intelligence aplicado à gestão financeira, projeções e qualidade dos dados.
+      </div>
+
+      <p class="hero-description">
+        Projeto desenvolvido para centralizar informações financeiras,
+        estruturar regras de classificação e transformar movimentações
+        em análises capazes de apoiar o acompanhamento financeiro presente
+        e futuro.
+      </p>
+
+      <div class="tech-list">
+        <span class="tech">Power BI</span>
+        <span class="tech">DAX</span>
+        <span class="tech">Power Query</span>
+        <span class="tech">Excel</span>
+        <span class="tech">Modelagem de Dados</span>
+        <span class="tech">Análise Financeira</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Contexto</span>
+        <h2>Visão Geral do Projeto</h2>
+      </div>
+
+      <div class="two-columns">
+
+        <div class="card">
+          <h3>O problema</h3>
+
+          <p>
+            Informações financeiras provenientes de diferentes movimentações
+            exigiam tratamento, categorização e acompanhamento recorrente.
+            O desafio era consolidar essas informações em uma estrutura
+            confiável e fácil de analisar.
+          </p>
+        </div>
+
+
+        <div class="card">
+          <h3>A solução</h3>
+
+          <p>
+            Foi desenvolvido um modelo de Business Intelligence no Power BI
+            capaz de integrar dados tratados, regras de negócio, medidas DAX
+            e diferentes perspectivas de análise financeira em uma única solução.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section white">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Estrutura</span>
+        <h2>Arquitetura da Solução</h2>
+
+        <p>
+          O projeto foi estruturado para transformar dados financeiros brutos
+          em indicadores e análises gerenciais.
+        </p>
+      </div>
+
+
+      <div class="architecture">
+
+        <div class="architecture-step">
+          Extratos e bases financeiras
+        </div>
+
+        <div class="architecture-step">
+          Power Query — tratamento e padronização
+        </div>
+
+        <div class="architecture-step">
+          Modelo de dados e relacionamentos
+        </div>
+
+        <div class="architecture-step">
+          Medidas DAX e regras de negócio
+        </div>
+
+        <div class="architecture-step">
+          Power BI — dashboards, indicadores e insights
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Funcionalidades</span>
+        <h2>Principais Recursos</h2>
+      </div>
+
+
+      <div class="features-grid">
+
+        <div class="feature">
+          <strong>Relatório Financeiro</strong>
+          <p>
+            Acompanhamento de receitas, despesas, investimentos,
+            movimentações e saldo financeiro.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Fluxo de Pagamentos</strong>
+          <p>
+            Projeção de receitas, saídas futuras, comprometimento
+            financeiro e necessidade de caixa.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Qualidade dos Dados</strong>
+          <p>
+            Monitoramento da taxa de classificação, lançamentos
+            automatizados e pendências de tratamento.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Patrimônio e Reserva</strong>
+          <p>
+            Análise da evolução patrimonial, reserva financeira
+            e acompanhamento de metas.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Insights Financeiros</strong>
+          <p>
+            Regras de leitura para tendência do fluxo, economia,
+            comprometimento futuro e caixa projetado.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Projeções Futuras</strong>
+          <p>
+            Análise de cenários futuros para antecipar pressões
+            financeiras e melhorar o planejamento.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section white">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Dashboards</span>
+        <h2>Páginas do Relatório</h2>
+
+        <p>
+          As imagens reais do projeto serão inseridas nesta área
+          na próxima etapa.
+        </p>
+      </div>
+
+
+      <div class="gallery">
+
+        <div class="gallery-item">
+          <div>
+            <strong>Relatório Financeiro</strong>
+            Screenshot do dashboard
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>Fluxo de Pagamentos</strong>
+            Screenshot do dashboard
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>Qualidade dos Dados</strong>
+            Screenshot do dashboard
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>Patrimônio e Reserva Financeira</strong>
+            Screenshot do dashboard
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="insight-box">
+
+        <h3>
+          Evolução do projeto
+        </h3>
+
+        <p>
+          O aumento da complexidade das regras de classificação,
+          atualização e processamento dos dados levou à evolução
+          desta solução para um aplicativo desenvolvido em Python.
+          Essa evolução deu origem ao segundo case apresentado
+          neste portfólio.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  © 2026 Fauzer Vieira • Projeto Controle Financeiro Pessoal — Power BI
+</footer>
+
+</body>
+
+</html>
