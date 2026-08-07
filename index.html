@@ -177,6 +177,7 @@
       position: relative;
       overflow: hidden;
       padding: 72px 0 82px;
+
       background:
         radial-gradient(circle at 10% 20%, #eef4fa 0, transparent 28%),
         radial-gradient(circle at 90% 70%, #eef8f3 0, transparent 28%),
@@ -281,7 +282,10 @@
       border: 1px solid var(--border);
       border-radius: 22px;
       padding: 24px;
-      box-shadow: 0 20px 50px rgba(8, 43, 87, 0.13);
+
+      box-shadow:
+        0 20px 50px rgba(8, 43, 87, 0.13);
+
       transform: translateY(-4px);
     }
 
@@ -427,7 +431,8 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
 
-      box-shadow: 0 5px 18px rgba(8, 43, 87, 0.035);
+      box-shadow:
+        0 5px 18px rgba(8, 43, 87, 0.035);
 
       transition: 0.25s ease;
     }
@@ -592,7 +597,9 @@
       font-weight: 800;
 
       border: 8px solid white;
-      box-shadow: 0 10px 30px rgba(8, 43, 87, 0.1);
+
+      box-shadow:
+        0 10px 30px rgba(8, 43, 87, 0.1);
     }
 
     .about-content h2 {
@@ -678,7 +685,8 @@
       margin-top: 45px;
       padding-top: 20px;
 
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-top:
+        1px solid rgba(255, 255, 255, 0.14);
 
       text-align: center;
       color: #aebfd2;
@@ -691,6 +699,7 @@
     ========================================================= */
 
     @media (max-width: 980px) {
+
       .hero-grid {
         grid-template-columns: 1fr;
       }
@@ -714,6 +723,7 @@
     }
 
     @media (max-width: 720px) {
+
       nav ul {
         display: none;
       }
@@ -758,31 +768,67 @@
   ======================================================== -->
 
   <header>
+
     <div class="container nav">
 
-      <a href="#inicio" class="brand">
+      <a
+        href="#inicio"
+        class="brand"
+      >
 
         <div class="brand-mark">
           FV
         </div>
 
         <div class="brand-text">
-          <strong>Fauzer Vieira</strong>
-          <small>Business Intelligence & Finanças</small>
+
+          <strong>
+            Fauzer Vieira
+          </strong>
+
+          <small>
+            Business Intelligence & Finanças
+          </small>
+
         </div>
 
       </a>
 
+
       <nav>
+
         <ul>
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#contato">Contato</a></li>
+
+          <li>
+            <a href="#inicio">
+              Início
+            </a>
+          </li>
+
+          <li>
+            <a href="#projetos">
+              Projetos
+            </a>
+          </li>
+
+          <li>
+            <a href="#sobre">
+              Sobre
+            </a>
+          </li>
+
+          <li>
+            <a href="#contato">
+              Contato
+            </a>
+          </li>
+
         </ul>
+
       </nav>
 
     </div>
+
   </header>
 
 
@@ -792,7 +838,10 @@
 
   <main>
 
-    <section class="hero" id="inicio">
+    <section
+      class="hero"
+      id="inicio"
+    >
 
       <div class="container hero-grid">
 
@@ -816,6 +865,7 @@
             à tomada de decisão.
           </p>
 
+
           <div class="hero-actions">
 
             <a
@@ -829,6 +879,7 @@
               class="button button-secondary"
               href="https://github.com/fauzervieira"
               target="_blank"
+              rel="noopener noreferrer"
             >
               ◉ GitHub
             </a>
@@ -838,13 +889,17 @@
         </div>
 
 
-        <!-- Dashboard ilustrativo -->
+        <!-- ===================================================
+             DASHBOARD ILUSTRATIVO
+        ==================================================== -->
 
         <div class="dashboard-preview">
 
           <div class="dashboard-header">
 
-            <strong>Visão Geral</strong>
+            <strong>
+              Visão Geral
+            </strong>
 
             <span class="dashboard-badge">
               Dashboard
@@ -856,21 +911,53 @@
           <div class="kpi-grid">
 
             <div class="kpi">
-              <small>Receita</small>
-              <strong>R$ 1,68 mi</strong>
-              <em>▲ 12,4%</em>
+
+              <small>
+                Receita
+              </small>
+
+              <strong>
+                R$ 1,68 mi
+              </strong>
+
+              <em>
+                ▲ 12,4%
+              </em>
+
             </div>
 
-            <div class="kpi">
-              <small>Resultado</small>
-              <strong>R$ 320 mil</strong>
-              <em>▲ 8,7%</em>
-            </div>
 
             <div class="kpi">
-              <small>Margem</small>
-              <strong>19,0%</strong>
-              <em>▲ 1,6 p.p.</em>
+
+              <small>
+                Resultado
+              </small>
+
+              <strong>
+                R$ 320 mil
+              </strong>
+
+              <em>
+                ▲ 8,7%
+              </em>
+
+            </div>
+
+
+            <div class="kpi">
+
+              <small>
+                Margem
+              </small>
+
+              <strong>
+                19,0%
+              </strong>
+
+              <em>
+                ▲ 1,6 p.p.
+              </em>
+
             </div>
 
           </div>
@@ -884,36 +971,94 @@
                 Receita x Despesa
               </div>
 
+
               <div class="bars">
 
                 <div class="bar-group">
-                  <div class="bar bar-revenue" style="height: 60%"></div>
-                  <div class="bar bar-expense" style="height: 46%"></div>
+                  <div
+                    class="bar bar-revenue"
+                    style="height: 60%"
+                  ></div>
+
+                  <div
+                    class="bar bar-expense"
+                    style="height: 46%"
+                  ></div>
                 </div>
 
-                <div class="bar-group">
-                  <div class="bar bar-revenue" style="height: 72%"></div>
-                  <div class="bar bar-expense" style="height: 50%"></div>
-                </div>
 
                 <div class="bar-group">
-                  <div class="bar bar-revenue" style="height: 69%"></div>
-                  <div class="bar bar-expense" style="height: 43%"></div>
+
+                  <div
+                    class="bar bar-revenue"
+                    style="height: 72%"
+                  ></div>
+
+                  <div
+                    class="bar bar-expense"
+                    style="height: 50%"
+                  ></div>
+
                 </div>
 
-                <div class="bar-group">
-                  <div class="bar bar-revenue" style="height: 82%"></div>
-                  <div class="bar bar-expense" style="height: 54%"></div>
-                </div>
 
                 <div class="bar-group">
-                  <div class="bar bar-revenue" style="height: 90%"></div>
-                  <div class="bar bar-expense" style="height: 58%"></div>
+
+                  <div
+                    class="bar bar-revenue"
+                    style="height: 69%"
+                  ></div>
+
+                  <div
+                    class="bar bar-expense"
+                    style="height: 43%"
+                  ></div>
+
                 </div>
 
+
                 <div class="bar-group">
-                  <div class="bar bar-revenue" style="height: 78%"></div>
-                  <div class="bar bar-expense" style="height: 47%"></div>
+
+                  <div
+                    class="bar bar-revenue"
+                    style="height: 82%"
+                  ></div>
+
+                  <div
+                    class="bar bar-expense"
+                    style="height: 54%"
+                  ></div>
+
+                </div>
+
+
+                <div class="bar-group">
+
+                  <div
+                    class="bar bar-revenue"
+                    style="height: 90%"
+                  ></div>
+
+                  <div
+                    class="bar bar-expense"
+                    style="height: 58%"
+                  ></div>
+
+                </div>
+
+
+                <div class="bar-group">
+
+                  <div
+                    class="bar bar-revenue"
+                    style="height: 78%"
+                  ></div>
+
+                  <div
+                    class="bar bar-expense"
+                    style="height: 47%"
+                  ></div>
+
                 </div>
 
               </div>
@@ -926,6 +1071,7 @@
               <div class="chart-card-title">
                 Evolução do Resultado
               </div>
+
 
               <div class="line-chart">
 
@@ -977,7 +1123,9 @@
 
         <div class="section-title">
 
-          <span>Portfólio</span>
+          <span>
+            Portfólio
+          </span>
 
           <h2>
             Projetos em Destaque
@@ -994,7 +1142,10 @@
 
         <div class="projects-grid">
 
-          <!-- Projeto 01 -->
+
+          <!-- =================================================
+               PROJETO 01
+          ================================================== -->
 
           <article class="project-card concluded">
 
@@ -1012,22 +1163,28 @@
               patrimônio e qualidade dos dados.
             </p>
 
+
             <div class="project-footer">
 
               <span class="status status-concluded">
                 Concluído
               </span>
 
-              <span class="project-link">
+              <a
+                class="project-link"
+                href="projetos/controle-financeiro-powerbi.html"
+              >
                 Ver projeto →
-              </span>
+              </a>
 
             </div>
 
           </article>
 
 
-          <!-- Projeto 02 -->
+          <!-- =================================================
+               PROJETO 02
+          ================================================== -->
 
           <article class="project-card concluded">
 
@@ -1045,6 +1202,7 @@
               financeiros com integração ao Power BI.
             </p>
 
+
             <div class="project-footer">
 
               <span class="status status-concluded">
@@ -1060,7 +1218,9 @@
           </article>
 
 
-          <!-- Projeto 03 -->
+          <!-- =================================================
+               PROJETO 03
+          ================================================== -->
 
           <article class="project-card">
 
@@ -1078,6 +1238,7 @@
               de variações gerenciais.
             </p>
 
+
             <div class="project-footer">
 
               <span class="status status-development">
@@ -1089,7 +1250,9 @@
           </article>
 
 
-          <!-- Projeto 04 -->
+          <!-- =================================================
+               PROJETO 04
+          ================================================== -->
 
           <article class="project-card">
 
@@ -1107,6 +1270,7 @@
               necessidade de capital de giro.
             </p>
 
+
             <div class="project-footer">
 
               <span class="status status-planned">
@@ -1118,7 +1282,9 @@
           </article>
 
 
-          <!-- Projeto 05 -->
+          <!-- =================================================
+               PROJETO 05
+          ================================================== -->
 
           <article class="project-card">
 
@@ -1136,6 +1302,7 @@
               performance comercial.
             </p>
 
+
             <div class="project-footer">
 
               <span class="status status-planned">
@@ -1147,7 +1314,9 @@
           </article>
 
 
-          <!-- Projeto 06 -->
+          <!-- =================================================
+               PROJETO 06
+          ================================================== -->
 
           <article class="project-card">
 
@@ -1164,6 +1333,7 @@
               perdas, estoques, custos e eficiência
               operacional.
             </p>
+
 
             <div class="project-footer">
 
@@ -1192,7 +1362,9 @@
 
         <div class="section-title">
 
-          <span>Ferramentas & Conhecimentos</span>
+          <span>
+            Ferramentas & Conhecimentos
+          </span>
 
           <h2>
             Competências
@@ -1203,16 +1375,45 @@
 
         <div class="skills">
 
-          <span class="skill">Power BI</span>
-          <span class="skill">DAX</span>
-          <span class="skill">Power Query</span>
-          <span class="skill">Python</span>
-          <span class="skill">Excel</span>
-          <span class="skill">Análise Financeira</span>
-          <span class="skill">FP&A</span>
-          <span class="skill">Automação</span>
-          <span class="skill">Modelagem de Dados</span>
-          <span class="skill">Visualização de Dados</span>
+          <span class="skill">
+            Power BI
+          </span>
+
+          <span class="skill">
+            DAX
+          </span>
+
+          <span class="skill">
+            Power Query
+          </span>
+
+          <span class="skill">
+            Python
+          </span>
+
+          <span class="skill">
+            Excel
+          </span>
+
+          <span class="skill">
+            Análise Financeira
+          </span>
+
+          <span class="skill">
+            FP&A
+          </span>
+
+          <span class="skill">
+            Automação
+          </span>
+
+          <span class="skill">
+            Modelagem de Dados
+          </span>
+
+          <span class="skill">
+            Visualização de Dados
+          </span>
 
         </div>
 
@@ -1264,24 +1465,41 @@
             <div class="about-features">
 
               <div class="about-feature">
-                <strong>Foco em resultado</strong>
+
+                <strong>
+                  Foco em resultado
+                </strong>
+
                 <small>
                   Informações úteis para apoiar decisões.
                 </small>
+
               </div>
 
+
               <div class="about-feature">
-                <strong>Automação</strong>
+
+                <strong>
+                  Automação
+                </strong>
+
                 <small>
                   Processos mais consistentes e eficientes.
                 </small>
+
               </div>
 
+
               <div class="about-feature">
-                <strong>Visão analítica</strong>
+
+                <strong>
+                  Visão analítica
+                </strong>
+
                 <small>
                   Indicadores orientados à performance.
                 </small>
+
               </div>
 
             </div>
@@ -1331,6 +1549,7 @@
           <a
             href="https://github.com/fauzervieira"
             target="_blank"
+            rel="noopener noreferrer"
           >
             github.com/fauzervieira
           </a>
