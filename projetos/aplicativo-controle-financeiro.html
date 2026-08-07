@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Aplicativo de Controle Financeiro — Python | Fauzer Vieira</title>
+
+  <meta
+    name="description"
+    content="Case de desenvolvimento de aplicação financeira em Python para automação, classificação, validação e processamento de dados financeiros."
+  >
+
+  <style>
+    :root {
+      --navy: #082b57;
+      --navy-dark: #061f40;
+      --green: #16955b;
+      --green-light: #eaf7f2;
+      --amber: #d8a85c;
+      --background: #f7f9fc;
+      --surface: #ffffff;
+      --text: #172033;
+      --text-secondary: #52647b;
+      --border: #dce3ed;
+      --shadow: 0 14px 40px rgba(8, 43, 87, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--navy), #0e4c86);
+      color: white;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(8, 43, 87, 0.16);
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+    }
+
+    .brand small {
+      color: var(--text-secondary);
+    }
+
+    .back-link {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .back-link:hover {
+      color: var(--green);
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      background:
+        radial-gradient(circle at 10% 20%, #eef4fa 0, transparent 30%),
+        radial-gradient(circle at 90% 70%, #eef8f3 0, transparent 28%),
+        white;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 13px;
+      border-radius: 40px;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      color: var(--navy);
+      font-size: clamp(42px, 6vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+    }
+
+    .hero-subtitle {
+      margin-top: 20px;
+      color: var(--text-secondary);
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      max-width: 820px;
+      margin-top: 24px;
+      color: #34445a;
+      font-size: 18px;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .tech {
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      background: white;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 78px 0;
+    }
+
+    .section.white {
+      background: white;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-heading span {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+    }
+
+    .section-heading h2 {
+      margin-top: 6px;
+      color: var(--navy);
+      font-size: 34px;
+    }
+
+    .section-heading p {
+      max-width: 800px;
+      margin-top: 10px;
+      color: var(--text-secondary);
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      padding: 28px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 5px 18px rgba(8, 43, 87, 0.035);
+    }
+
+    .card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+    }
+
+    .architecture {
+      display: grid;
+      gap: 14px;
+      max-width: 800px;
+    }
+
+    .architecture-step {
+      position: relative;
+      padding: 18px 22px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--navy);
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(8, 43, 87, 0.025);
+    }
+
+    .architecture-step:not(:last-child)::after {
+      content: "↓";
+      position: absolute;
+      left: 50%;
+      bottom: -23px;
+      transform: translateX(-50%);
+      color: var(--green);
+      font-size: 18px;
+    }
+
+    .architecture-step + .architecture-step {
+      margin-top: 10px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 22px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    .feature strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .gallery-item {
+      min-height: 290px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      text-align: center;
+      background: linear-gradient(135deg, #f4f8fc, #eef8f3);
+      border: 1px dashed #b9c8d9;
+      border-radius: 18px;
+      color: var(--text-secondary);
+    }
+
+    .gallery-item strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .evolution-box {
+      padding: 32px;
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .evolution-box h3 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .evolution-box p {
+      color: #d6e2f0;
+    }
+
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      color: #aebfd2;
+      background: var(--navy-dark);
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .two-columns,
+      .features-grid,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container nav">
+
+    <a href="../index.html" class="brand">
+
+      <div class="brand-mark">
+        FV
+      </div>
+
+      <div>
+        <strong>Fauzer Vieira</strong>
+        <small>Business Intelligence & Finanças</small>
+      </div>
+
+    </a>
+
+    <a href="../index.html#projetos" class="back-link">
+      ← Voltar aos projetos
+    </a>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        Projeto concluído • Python & Automação
+      </div>
+
+      <h1>
+        Aplicativo de Controle Financeiro Pessoal
+      </h1>
+
+      <div class="hero-subtitle">
+        Automação, classificação e inteligência financeira com Python.
+      </div>
+
+      <p class="hero-description">
+        Aplicação desenvolvida a partir da evolução do projeto de
+        Controle Financeiro Pessoal em Power BI, com o objetivo de
+        automatizar processos de importação, classificação, validação
+        e preparação dos dados financeiros.
+      </p>
+
+      <div class="tech-list">
+        <span class="tech">Python</span>
+        <span class="tech">Tkinter</span>
+        <span class="tech">Pandas</span>
+        <span class="tech">Excel</span>
+        <span class="tech">Power BI</span>
+        <span class="tech">Automação</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Origem</span>
+        <h2>Como o Projeto Evoluiu</h2>
+      </div>
+
+      <div class="two-columns">
+
+        <div class="card">
+
+          <h3>O ponto de partida</h3>
+
+          <p>
+            O projeto começou como um dashboard financeiro desenvolvido
+            no Power BI. Conforme novas regras de classificação,
+            validação e atualização foram sendo adicionadas, parte do
+            processo passou a exigir automação.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>A evolução</h3>
+
+          <p>
+            A solução evoluiu para uma aplicação em Python capaz de
+            centralizar etapas operacionais do processo financeiro,
+            preparar dados para análise e reduzir tarefas manuais
+            recorrentes.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section white">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <span>Estrutura</span>
+
+        <h2>
+          Arquitetura da Aplicação
+        </h2>
+
+        <p>
+          O aplicativo funciona como uma camada de processamento entre
+          os arquivos financeiros e as ferramentas de análise.
+        </p>
+
+      </div>
+
+
+      <div class="architecture">
+
+        <div class="architecture-step">
+          Extratos e arquivos financeiros
+        </div>
+
+        <div class="architecture-step">
+          Aplicação Python
+        </div>
+
+        <div class="architecture-step">
+          Padronização e classificação dos lançamentos
+        </div>
+
+        <div class="architecture-step">
+          Regras de contexto e validação
+        </div>
+
+        <div class="architecture-step">
+          Identificação de pendências
+        </div>
+
+        <div class="architecture-step">
+          Geração das bases processadas
+        </div>
+
+        <div class="architecture-step">
+          Aplicativo + Power BI
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Funcionalidades</span>
+        <h2>Principais Recursos</h2>
+      </div>
+
+
+      <div class="features-grid">
+
+        <div class="feature">
+          <strong>Importação de Dados</strong>
+          <p>
+            Processamento dos arquivos financeiros utilizados
+            na rotina de atualização do sistema.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Padronização</strong>
+          <p>
+            Conversão de descrições bancárias em lançamentos
+            padronizados para facilitar classificação e análise.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Classificação Automática</strong>
+          <p>
+            Aplicação de regras para tipo financeiro,
+            nicho, subnicho e contexto de classificação.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Identificação de Pendências</strong>
+          <p>
+            Registros não reconhecidos são separados para revisão
+            e posterior incorporação às regras do sistema.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Fluxo Financeiro Futuro</strong>
+          <p>
+            Processamento de informações para projeções,
+            compromissos futuros e necessidade de caixa.
+          </p>
+        </div>
+
+        <div class="feature">
+          <strong>Integração com Power BI</strong>
+          <p>
+            Geração de bases estruturadas utilizadas pelo
+            relatório analítico do projeto.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section white">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <span>Interface</span>
+
+        <h2>
+          Telas da Aplicação
+        </h2>
+
+        <p>
+          As imagens públicas serão inseridas nesta área após
+          preparação de uma versão segura para portfólio.
+        </p>
+
+      </div>
+
+
+      <div class="gallery">
+
+        <div class="gallery-item">
+          <div>
+            <strong>Dashboard Principal</strong>
+            Screenshot da aplicação
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>Classificação Financeira</strong>
+            Screenshot da aplicação
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>Fluxo de Pagamentos</strong>
+            Screenshot da aplicação
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>Indicadores e Insights</strong>
+            Screenshot da aplicação
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="evolution-box">
+
+        <h3>
+          De dashboard para aplicação
+        </h3>
+
+        <p>
+          Este projeto demonstra a evolução de uma solução inicialmente
+          desenvolvida para análise no Power BI para um sistema com
+          automação, processamento de dados e regras de negócio em Python.
+          O dashboard passou a ser uma das camadas de visualização de
+          um processo mais amplo.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  © 2026 Fauzer Vieira • Aplicativo de Controle Financeiro Pessoal
+</footer>
+
+</body>
+
+</html>
