@@ -275,30 +275,66 @@
       font-size: 14px;
     }
 
+    /* Galeria das páginas do relatório */
+
     .gallery {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
     }
 
     .gallery-item {
-      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(8, 43, 87, 0.06);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(8, 43, 87, 0.1);
+    }
+
+    .gallery-item a {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 28px;
-      text-align: center;
-      background:
-        linear-gradient(135deg, #f4f8fc, #eef8f3);
-      border: 1px dashed #b9c8d9;
-      border-radius: 18px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #f4f7fb;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-item a:hover img {
+      transform: scale(1.015);
+    }
+
+    .gallery-item > div {
+      flex: 1;
+      padding: 20px 22px 22px;
       color: var(--text-secondary);
+      text-align: left;
     }
 
     .gallery-item strong {
       display: block;
+      margin-bottom: 5px;
       color: var(--navy);
-      margin-bottom: 8px;
+      font-size: 17px;
     }
 
     .insight-box {
@@ -332,303 +368,415 @@
       .gallery {
         grid-template-columns: 1fr;
       }
+
+      .hero {
+        padding: 70px 0 55px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav {
+        min-height: 68px;
+        gap: 16px;
+      }
+
+      .brand small {
+        display: none;
+      }
+
+      .back-link {
+        font-size: 13px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero-subtitle {
+        font-size: 17px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .section-heading h2 {
+        font-size: 29px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
+  <header>
+    <div class="container nav">
 
-    <a href="../index.html" class="brand">
-      <div class="brand-mark">FV</div>
+      <a href="../index.html" class="brand">
+        <div class="brand-mark">FV</div>
 
-      <div>
-        <strong>Fauzer Vieira</strong>
-        <small>Business Intelligence & Finanças</small>
-      </div>
-    </a>
+        <div>
+          <strong>Fauzer Vieira</strong>
+          <small>Business Intelligence & Finanças</small>
+        </div>
+      </a>
 
-    <a href="../index.html#projetos" class="back-link">
-      ← Voltar aos projetos
-    </a>
-
-  </div>
-</header>
-
-<main>
-
-  <section class="hero">
-
-    <div class="container">
-
-      <div class="eyebrow">
-        Projeto concluído • Business Intelligence
-      </div>
-
-      <h1>
-        Controle Financeiro Pessoal — Power BI
-      </h1>
-
-      <div class="hero-subtitle">
-        Business Intelligence aplicado à gestão financeira, projeções e qualidade dos dados.
-      </div>
-
-      <p class="hero-description">
-        Projeto desenvolvido para centralizar informações financeiras,
-        estruturar regras de classificação e transformar movimentações
-        em análises capazes de apoiar o acompanhamento financeiro presente
-        e futuro.
-      </p>
-
-      <div class="tech-list">
-        <span class="tech">Power BI</span>
-        <span class="tech">DAX</span>
-        <span class="tech">Power Query</span>
-        <span class="tech">Excel</span>
-        <span class="tech">Modelagem de Dados</span>
-        <span class="tech">Análise Financeira</span>
-      </div>
+      <a href="../index.html#projetos" class="back-link">
+        ← Voltar aos projetos
+      </a>
 
     </div>
+  </header>
 
-  </section>
 
+  <main>
 
-  <section class="section">
+    <!-- HERO -->
 
-    <div class="container">
+    <section class="hero">
+      <div class="container">
 
-      <div class="section-heading">
-        <span>Contexto</span>
-        <h2>Visão Geral do Projeto</h2>
-      </div>
-
-      <div class="two-columns">
-
-        <div class="card">
-          <h3>O problema</h3>
-
-          <p>
-            Informações financeiras provenientes de diferentes movimentações
-            exigiam tratamento, categorização e acompanhamento recorrente.
-            O desafio era consolidar essas informações em uma estrutura
-            confiável e fácil de analisar.
-          </p>
+        <div class="eyebrow">
+          Projeto concluído • Business Intelligence
         </div>
 
+        <h1>
+          Controle Financeiro Pessoal — Power BI
+        </h1>
 
-        <div class="card">
-          <h3>A solução</h3>
-
-          <p>
-            Foi desenvolvido um modelo de Business Intelligence no Power BI
-            capaz de integrar dados tratados, regras de negócio, medidas DAX
-            e diferentes perspectivas de análise financeira em uma única solução.
-          </p>
+        <div class="hero-subtitle">
+          Business Intelligence aplicado à gestão financeira, projeções e qualidade dos dados.
         </div>
 
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="section white">
-
-    <div class="container">
-
-      <div class="section-heading">
-        <span>Estrutura</span>
-        <h2>Arquitetura da Solução</h2>
-
-        <p>
-          O projeto foi estruturado para transformar dados financeiros brutos
-          em indicadores e análises gerenciais.
+        <p class="hero-description">
+          Projeto desenvolvido para centralizar informações financeiras,
+          estruturar regras de classificação e transformar movimentações
+          em análises capazes de apoiar o acompanhamento financeiro presente
+          e futuro.
         </p>
-      </div>
 
-
-      <div class="architecture">
-
-        <div class="architecture-step">
-          Extratos e bases financeiras
-        </div>
-
-        <div class="architecture-step">
-          Power Query — tratamento e padronização
-        </div>
-
-        <div class="architecture-step">
-          Modelo de dados e relacionamentos
-        </div>
-
-        <div class="architecture-step">
-          Medidas DAX e regras de negócio
-        </div>
-
-        <div class="architecture-step">
-          Power BI — dashboards, indicadores e insights
+        <div class="tech-list">
+          <span class="tech">Power BI</span>
+          <span class="tech">DAX</span>
+          <span class="tech">Power Query</span>
+          <span class="tech">Excel</span>
+          <span class="tech">Modelagem de Dados</span>
+          <span class="tech">Análise Financeira</span>
         </div>
 
       </div>
-
-    </div>
-
-  </section>
+    </section>
 
 
-  <section class="section">
+    <!-- VISÃO GERAL -->
 
-    <div class="container">
+    <section class="section">
+      <div class="container">
 
-      <div class="section-heading">
-        <span>Funcionalidades</span>
-        <h2>Principais Recursos</h2>
-      </div>
-
-
-      <div class="features-grid">
-
-        <div class="feature">
-          <strong>Relatório Financeiro</strong>
-          <p>
-            Acompanhamento de receitas, despesas, investimentos,
-            movimentações e saldo financeiro.
-          </p>
+        <div class="section-heading">
+          <span>Contexto</span>
+          <h2>Visão Geral do Projeto</h2>
         </div>
 
-        <div class="feature">
-          <strong>Fluxo de Pagamentos</strong>
-          <p>
-            Projeção de receitas, saídas futuras, comprometimento
-            financeiro e necessidade de caixa.
-          </p>
-        </div>
+        <div class="two-columns">
 
-        <div class="feature">
-          <strong>Qualidade dos Dados</strong>
-          <p>
-            Monitoramento da taxa de classificação, lançamentos
-            automatizados e pendências de tratamento.
-          </p>
-        </div>
+          <div class="card">
+            <h3>O problema</h3>
 
-        <div class="feature">
-          <strong>Patrimônio e Reserva</strong>
-          <p>
-            Análise da evolução patrimonial, reserva financeira
-            e acompanhamento de metas.
-          </p>
-        </div>
+            <p>
+              Informações financeiras provenientes de diferentes movimentações
+              exigiam tratamento, categorização e acompanhamento recorrente.
+              O desafio era consolidar essas informações em uma estrutura
+              confiável e fácil de analisar.
+            </p>
+          </div>
 
-        <div class="feature">
-          <strong>Insights Financeiros</strong>
-          <p>
-            Regras de leitura para tendência do fluxo, economia,
-            comprometimento futuro e caixa projetado.
-          </p>
-        </div>
+          <div class="card">
+            <h3>A solução</h3>
 
-        <div class="feature">
-          <strong>Projeções Futuras</strong>
-          <p>
-            Análise de cenários futuros para antecipar pressões
-            financeiras e melhorar o planejamento.
-          </p>
+            <p>
+              Foi desenvolvido um modelo de Business Intelligence no Power BI
+              capaz de integrar dados tratados, regras de negócio, medidas DAX
+              e diferentes perspectivas de análise financeira em uma única solução.
+            </p>
+          </div>
+
         </div>
 
       </div>
-
-    </div>
-
-  </section>
+    </section>
 
 
-  <section class="section white">
+    <!-- ARQUITETURA -->
 
-    <div class="container">
+    <section class="section white">
+      <div class="container">
 
-      <div class="section-heading">
-        <span>Dashboards</span>
-        <h2>Páginas do Relatório</h2>
+        <div class="section-heading">
+          <span>Estrutura</span>
+          <h2>Arquitetura da Solução</h2>
 
-        <p>
-          As imagens reais do projeto serão inseridas nesta área
-          na próxima etapa.
-        </p>
+          <p>
+            O projeto foi estruturado para transformar dados financeiros brutos
+            em indicadores e análises gerenciais.
+          </p>
+        </div>
+
+        <div class="architecture">
+
+          <div class="architecture-step">
+            Extratos e bases financeiras
+          </div>
+
+          <div class="architecture-step">
+            Power Query — tratamento e padronização
+          </div>
+
+          <div class="architecture-step">
+            Modelo de dados e relacionamentos
+          </div>
+
+          <div class="architecture-step">
+            Medidas DAX e regras de negócio
+          </div>
+
+          <div class="architecture-step">
+            Power BI — dashboards, indicadores e insights
+          </div>
+
+        </div>
+
       </div>
+    </section>
 
 
-      <div class="gallery">
+    <!-- FUNCIONALIDADES -->
 
-        <div class="gallery-item">
-          <div>
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span>Funcionalidades</span>
+          <h2>Principais Recursos</h2>
+        </div>
+
+        <div class="features-grid">
+
+          <div class="feature">
             <strong>Relatório Financeiro</strong>
-            Screenshot do dashboard
-          </div>
-        </div>
 
-        <div class="gallery-item">
-          <div>
+            <p>
+              Acompanhamento de receitas, despesas, investimentos,
+              movimentações e saldo financeiro.
+            </p>
+          </div>
+
+          <div class="feature">
             <strong>Fluxo de Pagamentos</strong>
-            Screenshot do dashboard
-          </div>
-        </div>
 
-        <div class="gallery-item">
-          <div>
+            <p>
+              Projeção de receitas, saídas futuras, comprometimento
+              financeiro e necessidade de caixa.
+            </p>
+          </div>
+
+          <div class="feature">
             <strong>Qualidade dos Dados</strong>
-            Screenshot do dashboard
-          </div>
-        </div>
 
-        <div class="gallery-item">
-          <div>
-            <strong>Patrimônio e Reserva Financeira</strong>
-            Screenshot do dashboard
+            <p>
+              Monitoramento da taxa de classificação, lançamentos
+              automatizados e pendências de tratamento.
+            </p>
           </div>
+
+          <div class="feature">
+            <strong>Patrimônio e Reserva</strong>
+
+            <p>
+              Análise da evolução patrimonial, reserva financeira
+              e acompanhamento de metas.
+            </p>
+          </div>
+
+          <div class="feature">
+            <strong>Insights Financeiros</strong>
+
+            <p>
+              Regras de leitura para tendência do fluxo, economia,
+              comprometimento futuro e caixa projetado.
+            </p>
+          </div>
+
+          <div class="feature">
+            <strong>Projeções Futuras</strong>
+
+            <p>
+              Análise de cenários futuros para antecipar pressões
+              financeiras e melhorar o planejamento.
+            </p>
+          </div>
+
         </div>
 
       </div>
-
-    </div>
-
-  </section>
+    </section>
 
 
-  <section class="section">
+    <!-- DASHBOARDS -->
 
-    <div class="container">
+    <section class="section white">
+      <div class="container">
 
-      <div class="insight-box">
+        <div class="section-heading">
+          <span>Dashboards</span>
+          <h2>Páginas do Relatório</h2>
 
-        <h3>
-          Evolução do projeto
-        </h3>
+          <p>
+            Conheça as principais páginas desenvolvidas no relatório financeiro.
+            Clique em uma imagem para visualizá-la em tamanho maior.
+          </p>
+        </div>
 
-        <p>
-          O aumento da complexidade das regras de classificação,
-          atualização e processamento dos dados levou à evolução
-          desta solução para um aplicativo desenvolvido em Python.
-          Essa evolução deu origem ao segundo case apresentado
-          neste portfólio.
-        </p>
+        <div class="gallery">
+
+          <!-- RELATÓRIO FINANCEIRO -->
+
+          <div class="gallery-item">
+
+            <a
+              href="../assets/images/controle-financeiro/dashboard-relatorio-financeiro.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Relatório Financeiro em tamanho completo"
+            >
+              <img
+                src="../assets/images/controle-financeiro/dashboard-relatorio-financeiro.png"
+                alt="Página Relatório Financeiro do dashboard"
+                loading="lazy"
+              >
+            </a>
+
+            <div>
+              <strong>Relatório Financeiro</strong>
+              Visão consolidada de receitas, despesas, investimentos e saldo.
+            </div>
+
+          </div>
+
+
+          <!-- FLUXO DE PAGAMENTOS -->
+
+          <div class="gallery-item">
+
+            <a
+              href="../assets/images/controle-financeiro/dashboard-fluxo-pagamentos.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Fluxo de Pagamentos em tamanho completo"
+            >
+              <img
+                src="../assets/images/controle-financeiro/dashboard-fluxo-pagamentos.png"
+                alt="Página Fluxo de Pagamentos do dashboard"
+                loading="lazy"
+              >
+            </a>
+
+            <div>
+              <strong>Fluxo de Pagamentos</strong>
+              Projeções financeiras, compromissos futuros e necessidade de caixa.
+            </div>
+
+          </div>
+
+
+          <!-- QUALIDADE DOS DADOS -->
+
+          <div class="gallery-item">
+
+            <a
+              href="../assets/images/controle-financeiro/dashboard-qualidade-dados.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Qualidade dos Dados em tamanho completo"
+            >
+              <img
+                src="../assets/images/controle-financeiro/dashboard-qualidade-dados.png"
+                alt="Página Qualidade dos Dados do dashboard"
+                loading="lazy"
+              >
+            </a>
+
+            <div>
+              <strong>Qualidade dos Dados</strong>
+              Monitoramento da classificação, automação e pendências dos registros.
+            </div>
+
+          </div>
+
+
+          <!-- PATRIMÔNIO E RESERVA -->
+
+          <div class="gallery-item">
+
+            <a
+              href="../assets/images/controle-financeiro/dashboard-patrimonio-reserva.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Patrimônio e Reserva Financeira em tamanho completo"
+            >
+              <img
+                src="../assets/images/controle-financeiro/dashboard-patrimonio-reserva.png"
+                alt="Página Patrimônio e Reserva Financeira do dashboard"
+                loading="lazy"
+              >
+            </a>
+
+            <div>
+              <strong>Patrimônio e Reserva Financeira</strong>
+              Acompanhamento patrimonial, metas, aportes e evolução da reserva.
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
-
-    </div>
-
-  </section>
-
-</main>
+    </section>
 
 
-<footer>
-  © 2026 Fauzer Vieira • Projeto Controle Financeiro Pessoal — Power BI
-</footer>
+    <!-- EVOLUÇÃO -->
+
+    <section class="section">
+      <div class="container">
+
+        <div class="insight-box">
+
+          <h3>
+            Evolução do projeto
+          </h3>
+
+          <p>
+            O aumento da complexidade das regras de classificação,
+            atualização e processamento dos dados levou à evolução
+            desta solução para um aplicativo desenvolvido em Python.
+            Essa evolução deu origem ao segundo case apresentado
+            neste portfólio.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 
 </body>
 
